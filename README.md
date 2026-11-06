@@ -47,30 +47,6 @@ If you are not sure whether your system fits, describe it when you get in touch 
 
 Findings go to the system owner first, through a private channel the owner names. We follow the owner's disclosure policy where it has one. Where it does not, we give the owner a fixed window to respond and fix before any public discussion, and we agree the wording of any public statement with the owner first.
 
-## Writing newsletter issues (read this first)
-
-Before writing any issue, read this section and [NEWSLETTER.md](NEWSLETTER.md), so you know which issues are already published.
-
-**Audience.** Senior leaders responsible for automated systems: CEOs, CTOs, CISOs, CROs and similar roles.
-
-**Scope.** The four review areas: execution integrity, business authority, infrastructure, and runtime authorisation. Stay within them.
-
-**Rules.**
-- Plain English. Short sentences. One idea per section.
-- Do not name any organisation, client or person whose system was reviewed.
-- Do not describe any finding that has not been published or agreed with the owner.
-- Describe general patterns, not specific incidents.
-- Do not use hyphens or em dashes in the text.
-- Do not overpromise. Describe what the review checks, not what it guarantees.
-
-**Structure.** An opening claim. Three or four numbered patterns, each with a short explanation. A "what to check first" list. One closing line that invites a reply.
-
-**Before publishing.**
-- Check the title and subtitle against the rules above.
-- Check the text for hyphens and em dashes.
-- Confirm no organisation or client is named.
-- Add the issue to [NEWSLETTER.md](NEWSLETTER.md): date, title, subtitle and link.
-
 ## Newsletter
 
 Authority Trace publishes an invitation-only newsletter. The index of published issues, with subtitles and links, is in [NEWSLETTER.md](NEWSLETTER.md). The newsletter itself is at [authoritytrace.substack.com](https://authoritytrace.substack.com/).
