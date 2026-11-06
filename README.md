@@ -40,6 +40,6 @@ Findings go to the system owner first, through a private channel the owner names
 
 Pavan Dev Singh Charak
 charak1987@gmail.com
-[Optional: website or profile link]
+https://www.linkedin.com/in/pavancharak/
 
 Tell us what you want reviewed and the systems involved. We will reply with a proposed scope and an estimate.
