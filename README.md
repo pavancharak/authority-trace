@@ -47,6 +47,10 @@ If you are not sure whether your system fits, describe it when you get in touch 
 
 Findings go to the system owner first, through a private channel the owner names. We follow the owner's disclosure policy where it has one. Where it does not, we give the owner a fixed window to respond and fix before any public discussion, and we agree the wording of any public statement with the owner first.
 
+## Newsletter
+
+Authority Trace publishes an invitation-only newsletter. The index of published issues, with subtitles and links, is in [NEWSLETTER.md](NEWSLETTER.md). The newsletter itself is at [authoritytrace.substack.com](https://authoritytrace.substack.com/).
+
 ## Contact
 
 Pavan Dev Singh Charak
