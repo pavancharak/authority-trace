@@ -49,7 +49,7 @@ Findings go to the system owner first, through a private channel the owner names
 
 ## Newsletter
 
-Authority Trace publishes an invitation-only newsletter. The index of published issues, with subtitles and links, is in [NEWSLETTER.md](NEWSLETTER.md). The newsletter itself is at [authoritytrace.substack.com](https://authoritytrace.substack.com/).
+Authority Trace publishes an invitation-only newsletter. To subscribe, follow the steps in [SUBSCRIBE.md](SUBSCRIBE.md). The index of published issues, with subtitles and links, is in [NEWSLETTER.md](NEWSLETTER.md). The newsletter itself is at [authoritytrace.substack.com](https://authoritytrace.substack.com/).
 
 Writing guidance for new issues is kept privately. Before writing an issue, check the private writing notes and this index, so that no issue repeats an earlier one.
 
