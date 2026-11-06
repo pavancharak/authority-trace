@@ -4,6 +4,17 @@ Independent review of execution integrity, business authority, infrastructure, a
 
 Automated systems increasingly take actions with money, data, and access. Authority Trace checks that those actions do exactly what they are authorised to do.
 
+## Who this is for
+
+- **Teams building AI agents or automation** that move money, change records, or grant access, and need proof that each action was approved and ran as approved.
+- **Payments and refund platforms** that want to confirm an approved refund is executed once, by the right service, within the approved limit.
+- **SaaS companies with multi-tenant products** that need to confirm one customer's administrators cannot act on another customer's data or roles.
+- **Companies with internal approval workflows** (finance, procurement, access requests) that want to check the approval rules are enforced in the software, not just in the policy document.
+- **Startups preparing for a security or compliance review** that need an independent check of authority and execution before a customer or auditor asks.
+- **Open-source maintainers** who want an outside review of their authorisation model before a release.
+
+If you are not sure whether your system fits, describe it when you get in touch and we will tell you whether we can help.
+
 ## What we review
 
 - **Execution integrity.** Each action traces to a valid approval, runs once, and cannot be changed after it is recorded. We look for gaps between what was approved and what ran, including retries, races, and replays.
