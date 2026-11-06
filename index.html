@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Authority Trace</title>
+  <meta name="description" content="Independent review of execution integrity, business authority, infrastructure and runtime authorisation.">
+  <style>
+    :root {
+      --bg: #fafaf7;
+      --fg: #1c1c1a;
+      --muted: #5a5a55;
+      --accent: #1f5f8b;
+      --rule: #dcdcd6;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #161614;
+        --fg: #ededE8;
+        --muted: #a6a6a0;
+        --accent: #7fb6dd;
+        --rule: #33332f;
+      }
+    }
+    :root[data-theme="dark"] {
+      --bg: #161614;
+      --fg: #ededE8;
+      --muted: #a6a6a0;
+      --accent: #7fb6dd;
+      --rule: #33332f;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font: 17px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    }
+    main {
+      max-width: 44rem;
+      margin: 0 auto;
+      padding: 4rem 1.25rem 5rem;
+    }
+    h1 { font-size: 2.4rem; margin: 0 0 0.5rem; letter-spacing: -0.01em; }
+    h2 { font-size: 1.25rem; margin: 2.5rem 0 0.75rem; }
+    .lede { font-size: 1.15rem; color: var(--muted); margin: 0 0 1.5rem; }
+    ul { padding-left: 1.2rem; }
+    li { margin: 0.4rem 0; }
+    a { color: var(--accent); }
+    hr { border: 0; border-top: 1px solid var(--rule); margin: 2.5rem 0; }
+    .contact a { word-break: break-all; }
+    footer { color: var(--muted); font-size: 0.9rem; margin-top: 3rem; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Authority Trace</h1>
+    <p class="lede">Independent review of execution integrity, business authority, infrastructure, and runtime authorisation.</p>
+
+    <p>Automated systems increasingly take actions with money, data, and access. Authority Trace checks that those actions do exactly what they are authorised to do.</p>
+
+    <h2>What we review</h2>
+    <ul>
+      <li><strong>Execution integrity.</strong> Each action traces to a valid approval, runs once, and cannot be changed after it is recorded. We look for gaps between what was approved and what ran, including retries, races, and replays.</li>
+      <li><strong>Business authority.</strong> Who or what may approve, initiate, and change an action, and whether those rules hold in code. This includes role changes, delegation, and tenant boundaries.</li>
+      <li><strong>Infrastructure.</strong> Service identities, shared credentials, network paths, and the configuration that decides who can do what.</li>
+      <li><strong>Runtime authorisation.</strong> Whether permissions are checked at the point of action, not only at login, and whether the checks agree with each other.</li>
+    </ul>
+
+    <h2>Who this is for</h2>
+    <ul>
+      <li>Teams building AI agents or automation that move money, change records, or grant access, and need proof that each action was approved and ran as approved.</li>
+      <li>Payments and refund platforms that want to confirm an approved refund is executed once, by the right service, within the approved limit.</li>
+      <li>SaaS companies with multi-tenant products that need to confirm one customer's administrators cannot act on another customer's data or roles.</li>
+      <li>Companies with internal approval workflows (finance, procurement, access requests) that want to check the approval rules are enforced in the software, not just in the policy document.</li>
+      <li>Startups preparing for a security or compliance review that need an independent check of authority and execution before a customer or auditor asks.</li>
+      <li>Open-source maintainers who want an outside review of their authorisation model before a release.</li>
+    </ul>
+    <p>If you are not sure whether your system fits, describe it when you get in touch and we will tell you whether we can help.</p>
+
+    <h2>How we work</h2>
+    <ol>
+      <li><strong>Scope.</strong> We agree in writing what is in scope, which repositories or environments, and what is out of scope.</li>
+      <li><strong>Permission.</strong> We test only systems you own or have written authorisation to test. We do not test production systems unless the scope says so.</li>
+      <li><strong>Review.</strong> We read the code and configuration, and where it is agreed, run the system in a test environment to confirm each finding.</li>
+      <li><strong>Report.</strong> For each finding: the location, what happens, the evidence needed to reproduce it, the impact, and a suggested fix.</li>
+      <li><strong>Follow-up.</strong> We check fixes and re-run the reproduction where you ask us to.</li>
+    </ol>
+
+    <h2>What you receive</h2>
+    <ul>
+      <li>A written report, with findings ranked by severity and confidence.</li>
+      <li>Reproduction steps for every finding we have confirmed. Findings we could not confirm are marked as such.</li>
+      <li>A short summary for non-technical readers.</li>
+      <li>A call to walk through the findings.</li>
+    </ul>
+
+    <h2>What we do not do</h2>
+    <ul>
+      <li>Test without written permission.</li>
+      <li>Publish findings about any organisation without its agreement.</li>
+      <li>Claim a finding we have not confirmed.</li>
+    </ul>
+
+    <h2>Disclosure</h2>
+    <p>Findings go to the system owner first, through a private channel the owner names. We follow the owner's disclosure policy where it has one. Where it does not, we give the owner a fixed window to respond and fix before any public discussion, and we agree the wording of any public statement with the owner first.</p>
+
+    <hr>
+
+    <h2>Contact</h2>
+    <p class="contact">
+      Pavan Dev Singh Charak<br>
+      <a href="mailto:charak1987@gmail.com">charak1987@gmail.com</a><br>
+      <a href="https://www.linkedin.com/in/pavancharak/">linkedin.com/in/pavancharak</a>
+    </p>
+    <p>Tell us what you want reviewed and the systems involved. We will reply with a proposed scope and an estimate.</p>
+
+    <footer>Authority Trace &middot; <a href="https://github.com/pavancharak/authority-trace">Source on GitHub</a></footer>
+  </main>
+</body>
+</html>
