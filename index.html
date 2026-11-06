@@ -3,119 +3,279 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Authority Trace</title>
+  <title>Authority Trace | Independent review of execution integrity and authority</title>
   <meta name="description" content="Independent review of execution integrity, business authority, infrastructure and runtime authorisation.">
   <style>
     :root {
-      --bg: #fafaf7;
-      --fg: #1c1c1a;
-      --muted: #5a5a55;
-      --accent: #1f5f8b;
-      --rule: #dcdcd6;
+      --bg: #ffffff;
+      --surface: #f6f7f9;
+      --fg: #111418;
+      --muted: #56606b;
+      --accent: #1d4ed8;
+      --accent-soft: #e8efff;
+      --rule: #e3e6ea;
+      --radius: 12px;
     }
     @media (prefers-color-scheme: dark) {
       :root:not([data-theme="light"]) {
-        --bg: #161614;
-        --fg: #ededE8;
-        --muted: #a6a6a0;
-        --accent: #7fb6dd;
-        --rule: #33332f;
+        --bg: #0f1115;
+        --surface: #171a20;
+        --fg: #eef0f3;
+        --muted: #a3acb8;
+        --accent: #7ea8ff;
+        --accent-soft: #1a2540;
+        --rule: #262b33;
       }
     }
     :root[data-theme="dark"] {
-      --bg: #161614;
-      --fg: #ededE8;
-      --muted: #a6a6a0;
-      --accent: #7fb6dd;
-      --rule: #33332f;
+      --bg: #0f1115;
+      --surface: #171a20;
+      --fg: #eef0f3;
+      --muted: #a3acb8;
+      --accent: #7ea8ff;
+      --accent-soft: #1a2540;
+      --rule: #262b33;
     }
     * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
       background: var(--bg);
       color: var(--fg);
-      font: 17px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
     }
-    main {
-      max-width: 44rem;
-      margin: 0 auto;
-      padding: 4rem 1.25rem 5rem;
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .wrap { max-width: 960px; margin: 0 auto; padding: 0 1.5rem; }
+
+    /* Header */
+    header.site {
+      border-bottom: 1px solid var(--rule);
+      position: sticky; top: 0; z-index: 10;
+      background: color-mix(in srgb, var(--bg) 92%, transparent);
+      backdrop-filter: blur(8px);
     }
-    h1 { font-size: 2.4rem; margin: 0 0 0.5rem; letter-spacing: -0.01em; }
-    h2 { font-size: 1.25rem; margin: 2.5rem 0 0.75rem; }
-    .lede { font-size: 1.15rem; color: var(--muted); margin: 0 0 1.5rem; }
-    ul { padding-left: 1.2rem; }
-    li { margin: 0.4rem 0; }
-    a { color: var(--accent); }
-    hr { border: 0; border-top: 1px solid var(--rule); margin: 2.5rem 0; }
-    .contact a { word-break: break-all; }
-    footer { color: var(--muted); font-size: 0.9rem; margin-top: 3rem; }
+    header.site .wrap {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .brand { font-weight: 700; color: var(--fg); letter-spacing: -0.01em; }
+    .brand:hover { text-decoration: none; }
+    nav a {
+      color: var(--muted); margin-left: 1.5rem; font-size: 0.95rem;
+    }
+    nav a:hover { color: var(--fg); text-decoration: none; }
+
+    /* Hero */
+    .hero { padding: 6rem 0 4rem; }
+    .eyebrow {
+      display: inline-block; font-size: 0.8rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--accent); background: var(--accent-soft);
+      padding: 0.35rem 0.7rem; border-radius: 999px; margin-bottom: 1.5rem;
+    }
+    h1 {
+      font-size: clamp(2.2rem, 5vw, 3.4rem); line-height: 1.12;
+      letter-spacing: -0.02em; margin: 0 0 1.25rem; max-width: 18ch;
+    }
+    .lede { font-size: 1.2rem; color: var(--muted); max-width: 46rem; margin: 0 0 2rem; }
+    .cta {
+      display: inline-block; background: var(--accent); color: #fff;
+      padding: 0.8rem 1.4rem; border-radius: 8px; font-weight: 600;
+    }
+    .cta:hover { text-decoration: none; opacity: 0.92; }
+
+    /* Sections */
+    section { padding: 4rem 0; border-top: 1px solid var(--rule); }
+    section.alt { background: var(--surface); }
+    h2 { font-size: 1.7rem; letter-spacing: -0.01em; margin: 0 0 0.5rem; }
+    .section-intro { color: var(--muted); margin: 0 0 2.25rem; max-width: 46rem; }
+
+    .grid {
+      display: grid; gap: 1.25rem;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+    .card {
+      background: var(--bg); border: 1px solid var(--rule);
+      border-radius: var(--radius); padding: 1.5rem;
+    }
+    .alt .card { background: var(--bg); }
+    .card h3 { font-size: 1.05rem; margin: 0 0 0.5rem; }
+    .card p { margin: 0; color: var(--muted); font-size: 0.97rem; }
+
+    ol.steps { list-style: none; padding: 0; margin: 0; counter-reset: step; display: grid; gap: 1rem; }
+    ol.steps li {
+      counter-increment: step; display: grid; grid-template-columns: 3rem 1fr; gap: 1rem;
+      background: var(--bg); border: 1px solid var(--rule); border-radius: var(--radius); padding: 1.25rem 1.5rem;
+    }
+    ol.steps li::before {
+      content: counter(step); display: flex; align-items: center; justify-content: center;
+      width: 2.25rem; height: 2.25rem; border-radius: 50%;
+      background: var(--accent-soft); color: var(--accent); font-weight: 700;
+    }
+    ol.steps strong { display: block; margin-bottom: 0.15rem; }
+    ol.steps span { color: var(--muted); font-size: 0.97rem; }
+
+    ul.plain { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.75rem; }
+    ul.plain li {
+      padding-left: 1.6rem; position: relative; color: var(--fg);
+    }
+    ul.plain li::before {
+      content: ""; position: absolute; left: 0; top: 0.6rem;
+      width: 0.6rem; height: 0.6rem; border-radius: 2px; background: var(--accent);
+    }
+
+    .split { display: grid; gap: 2.5rem; grid-template-columns: 1fr; }
+    @media (min-width: 760px) { .split { grid-template-columns: 1fr 1fr; } }
+
+    .contact-card {
+      background: var(--surface); border: 1px solid var(--rule);
+      border-radius: var(--radius); padding: 2rem;
+    }
+    .contact-card .name { font-weight: 700; font-size: 1.1rem; margin: 0 0 0.75rem; }
+    .contact-card p { margin: 0.35rem 0; }
+
+    footer.site { border-top: 1px solid var(--rule); padding: 2rem 0; color: var(--muted); font-size: 0.9rem; }
+    footer.site .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+
+    @media (max-width: 600px) {
+      .hero { padding: 4rem 0 3rem; }
+      nav a { margin-left: 1rem; }
+    }
   </style>
 </head>
 <body>
-  <main>
-    <h1>Authority Trace</h1>
-    <p class="lede">Independent review of execution integrity, business authority, infrastructure, and runtime authorisation.</p>
 
-    <p>Automated systems increasingly take actions with money, data, and access. Authority Trace checks that those actions do exactly what they are authorised to do.</p>
+  <header class="site">
+    <div class="wrap">
+      <a class="brand" href="#top">Authority Trace</a>
+      <nav>
+        <a href="#review">Review</a>
+        <a href="#who">Who it's for</a>
+        <a href="#how">How we work</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
 
-    <h2>What we review</h2>
-    <ul>
-      <li><strong>Execution integrity.</strong> Each action traces to a valid approval, runs once, and cannot be changed after it is recorded. We look for gaps between what was approved and what ran, including retries, races, and replays.</li>
-      <li><strong>Business authority.</strong> Who or what may approve, initiate, and change an action, and whether those rules hold in code. This includes role changes, delegation, and tenant boundaries.</li>
-      <li><strong>Infrastructure.</strong> Service identities, shared credentials, network paths, and the configuration that decides who can do what.</li>
-      <li><strong>Runtime authorisation.</strong> Whether permissions are checked at the point of action, not only at login, and whether the checks agree with each other.</li>
-    </ul>
+  <main id="top">
 
-    <h2>Who this is for</h2>
-    <ul>
-      <li>Teams building AI agents or automation that move money, change records, or grant access, and need proof that each action was approved and ran as approved.</li>
-      <li>Payments and refund platforms that want to confirm an approved refund is executed once, by the right service, within the approved limit.</li>
-      <li>SaaS companies with multi-tenant products that need to confirm one customer's administrators cannot act on another customer's data or roles.</li>
-      <li>Companies with internal approval workflows (finance, procurement, access requests) that want to check the approval rules are enforced in the software, not just in the policy document.</li>
-      <li>Startups preparing for a security or compliance review that need an independent check of authority and execution before a customer or auditor asks.</li>
-      <li>Open-source maintainers who want an outside review of their authorisation model before a release.</li>
-    </ul>
-    <p>If you are not sure whether your system fits, describe it when you get in touch and we will tell you whether we can help.</p>
+    <div class="hero">
+      <div class="wrap">
+        <span class="eyebrow">Independent review</span>
+        <h1>Make sure automated systems do only what they are authorised to do.</h1>
+        <p class="lede">Authority Trace is an independent review of execution integrity, business authority, infrastructure, and runtime authorisation. Automated systems increasingly take actions with money, data, and access. We check that those actions do exactly what they are authorised to do.</p>
+        <a class="cta" href="#contact">Discuss a review</a>
+      </div>
+    </div>
 
-    <h2>How we work</h2>
-    <ol>
-      <li><strong>Scope.</strong> We agree in writing what is in scope, which repositories or environments, and what is out of scope.</li>
-      <li><strong>Permission.</strong> We test only systems you own or have written authorisation to test. We do not test production systems unless the scope says so.</li>
-      <li><strong>Review.</strong> We read the code and configuration, and where it is agreed, run the system in a test environment to confirm each finding.</li>
-      <li><strong>Report.</strong> For each finding: the location, what happens, the evidence needed to reproduce it, the impact, and a suggested fix.</li>
-      <li><strong>Follow-up.</strong> We check fixes and re-run the reproduction where you ask us to.</li>
-    </ol>
+    <section id="review" class="alt">
+      <div class="wrap">
+        <h2>What we review</h2>
+        <p class="section-intro">Four areas where authority and execution can drift apart, and where a review finds the gaps before they reach production.</p>
+        <div class="grid">
+          <div class="card">
+            <h3>Execution integrity</h3>
+            <p>Each action traces to a valid approval, runs once, and cannot be changed after it is recorded. We look for gaps between what was approved and what ran, including retries, races, and replays.</p>
+          </div>
+          <div class="card">
+            <h3>Business authority</h3>
+            <p>Who or what may approve, initiate, and change an action, and whether those rules hold in code. This includes role changes, delegation, and tenant boundaries.</p>
+          </div>
+          <div class="card">
+            <h3>Infrastructure</h3>
+            <p>Service identities, shared credentials, network paths, and the configuration that decides who can do what.</p>
+          </div>
+          <div class="card">
+            <h3>Runtime authorisation</h3>
+            <p>Whether permissions are checked at the point of action, not only at login, and whether the checks agree with each other.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <h2>What you receive</h2>
-    <ul>
-      <li>A written report, with findings ranked by severity and confidence.</li>
-      <li>Reproduction steps for every finding we have confirmed. Findings we could not confirm are marked as such.</li>
-      <li>A short summary for non-technical readers.</li>
-      <li>A call to walk through the findings.</li>
-    </ul>
+    <section id="who">
+      <div class="wrap">
+        <h2>Who this is for</h2>
+        <p class="section-intro">If your system takes actions that matter, it is worth checking that each one was authorised and ran as approved.</p>
+        <ul class="plain">
+          <li>Teams building AI agents or automation that move money, change records, or grant access, and need proof that each action was approved and ran as approved.</li>
+          <li>Payments and refund platforms that want to confirm an approved refund is executed once, by the right service, within the approved limit.</li>
+          <li>SaaS companies with multi-tenant products that need to confirm one customer's administrators cannot act on another customer's data or roles.</li>
+          <li>Companies with internal approval workflows (finance, procurement, access requests) that want to check the approval rules are enforced in the software, not just in the policy document.</li>
+          <li>Startups preparing for a security or compliance review that need an independent check of authority and execution before a customer or auditor asks.</li>
+          <li>Open-source maintainers who want an outside review of their authorisation model before a release.</li>
+        </ul>
+        <p style="margin-top:1.5rem;color:var(--muted)">If you are not sure whether your system fits, describe it when you get in touch and we will tell you whether we can help.</p>
+      </div>
+    </section>
 
-    <h2>What we do not do</h2>
-    <ul>
-      <li>Test without written permission.</li>
-      <li>Publish findings about any organisation without its agreement.</li>
-      <li>Claim a finding we have not confirmed.</li>
-    </ul>
+    <section id="how" class="alt">
+      <div class="wrap">
+        <h2>How we work</h2>
+        <p class="section-intro">A review with clear scope, written permission, and findings you can act on.</p>
+        <ol class="steps">
+          <li><div><strong>Scope</strong><span>We agree in writing what is in scope, which repositories or environments, and what is out of scope.</span></div></li>
+          <li><div><strong>Permission</strong><span>We test only systems you own or have written authorisation to test. We do not test production systems unless the scope says so.</span></div></li>
+          <li><div><strong>Review</strong><span>We read the code and configuration, and where it is agreed, run the system in a test environment to confirm each finding.</span></div></li>
+          <li><div><strong>Report</strong><span>For each finding: the location, what happens, the evidence needed to reproduce it, the impact, and a suggested fix.</span></div></li>
+          <li><div><strong>Follow-up</strong><span>We check fixes and re-run the reproduction where you ask us to.</span></div></li>
+        </ol>
+      </div>
+    </section>
 
-    <h2>Disclosure</h2>
-    <p>Findings go to the system owner first, through a private channel the owner names. We follow the owner's disclosure policy where it has one. Where it does not, we give the owner a fixed window to respond and fix before any public discussion, and we agree the wording of any public statement with the owner first.</p>
+    <section>
+      <div class="wrap split">
+        <div>
+          <h2>What you receive</h2>
+          <p class="section-intro" style="margin-bottom:1.25rem">A report your engineers can act on and your leadership can read.</p>
+          <ul class="plain">
+            <li>A written report, with findings ranked by severity and confidence.</li>
+            <li>Reproduction steps for every finding we have confirmed. Findings we could not confirm are marked as such.</li>
+            <li>A short summary for non-technical readers.</li>
+            <li>A call to walk through the findings.</li>
+          </ul>
+        </div>
+        <div>
+          <h2>What we do not do</h2>
+          <p class="section-intro" style="margin-bottom:1.25rem">Limits we keep to, so that a review stays trustworthy.</p>
+          <ul class="plain">
+            <li>Test without written permission.</li>
+            <li>Publish findings about any organisation without its agreement.</li>
+            <li>Claim a finding we have not confirmed.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
-    <hr>
+    <section class="alt">
+      <div class="wrap">
+        <h2>Disclosure</h2>
+        <p class="section-intro" style="margin-bottom:0">Findings go to the system owner first, through a private channel the owner names. We follow the owner's disclosure policy where it has one. Where it does not, we give the owner a fixed window to respond and fix before any public discussion, and we agree the wording of any public statement with the owner first.</p>
+      </div>
+    </section>
 
-    <h2>Contact</h2>
-    <p class="contact">
-      Pavan Dev Singh Charak<br>
-      <a href="mailto:charak1987@gmail.com">charak1987@gmail.com</a><br>
-      <a href="https://www.linkedin.com/in/pavancharak/">linkedin.com/in/pavancharak</a>
-    </p>
-    <p>Tell us what you want reviewed and the systems involved. We will reply with a proposed scope and an estimate.</p>
+    <section id="contact">
+      <div class="wrap">
+        <h2>Contact</h2>
+        <p class="section-intro">Tell us what you want reviewed and the systems involved. We will reply with a proposed scope and an estimate.</p>
+        <div class="contact-card">
+          <p class="name">Pavan Dev Singh Charak</p>
+          <p><a href="mailto:charak1987@gmail.com">charak1987@gmail.com</a></p>
+          <p><a href="https://www.linkedin.com/in/pavancharak/">linkedin.com/in/pavancharak</a></p>
+        </div>
+      </div>
+    </section>
 
-    <footer>Authority Trace &middot; <a href="https://github.com/pavancharak/authority-trace">Source on GitHub</a></footer>
   </main>
+
+  <footer class="site">
+    <div class="wrap">
+      <span>&copy; Authority Trace</span>
+      <a href="https://github.com/pavancharak/authority-trace">Source on GitHub</a>
+    </div>
+  </footer>
+
 </body>
 </html>
