@@ -1,6 +1,6 @@
 # Authority Trace
 
-Independent review of execution integrity, business authority, infrastructure, and runtime authorisation.
+For CEOs, CTOs, CISOs, CROs and engineering leaders. Independent review that confirms automated systems do only what they are authorised to do.
 
 Automated systems increasingly take actions with money, data, and access. Authority Trace checks that those actions do exactly what they are authorised to do.
 
